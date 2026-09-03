@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KASHAN COFFEE - Menu</title>
     <style>
+        /* الوضع الافتراضي (الداكن - الفخم) */
         :root {
             --bg-color: #070707;
             --card-bg: #121212;
@@ -13,6 +14,23 @@
             --accent-glow: rgba(223, 177, 91, 0.15);
             --gray-text: #a0a0a0;
             --border-color: #222222;
+            --header-gradient: linear-gradient(to bottom, #141414, #070707);
+            --modal-bg: #161616;
+            --price-bg: #1f1f1f;
+        }
+
+        /* وضع الإضاءة الفاتحة (النهار) */
+        [data-theme="light"] {
+            --bg-color: #f4f5f7;
+            --card-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --accent-color: #b8860b;
+            --accent-glow: rgba(184, 134, 11, 0.15);
+            --gray-text: #666666;
+            --border-color: #e2e8f0;
+            --header-gradient: linear-gradient(to bottom, #ffffff, #f4f5f7);
+            --modal-bg: #ffffff;
+            --price-bg: #edf2f7;
         }
 
         body {
@@ -23,6 +41,7 @@
             padding: 0;
             direction: rtl;
             -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -31,14 +50,39 @@
             padding: 15px;
         }
 
+        /* زر تبديل الوضع (الليل/النهار) */
+        .theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .theme-toggle-btn:active {
+            transform: scale(0.9);
+        }
+
         /* رأس الصفحة الفخم */
         header {
             text-align: center;
             padding: 35px 15px 25px 15px;
-            background: linear-gradient(to bottom, #141414, var(--bg-color));
+            background: var(--header-gradient);
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 20px;
             border-radius: 0 0 24px 24px;
+            position: relative;
         }
 
         .logo-container {
@@ -100,9 +144,13 @@
 
         .nav-pill:hover, .nav-pill.active {
             background-color: var(--accent-color);
-            color: #000;
+            color: #fff;
             border-color: var(--accent-color);
             box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        [data-theme="light"] .nav-pill.active {
+            color: #000;
         }
 
         /* عنوان القسم */
@@ -132,8 +180,8 @@
             align-items: center;
             padding: 12px;
             margin-bottom: 12px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             cursor: pointer;
         }
 
@@ -182,7 +230,7 @@
             right: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
@@ -199,7 +247,7 @@
         }
 
         .modal-card {
-            background-color: #161616;
+            background-color: var(--modal-bg);
             border: 1px solid var(--accent-color);
             border-radius: 24px;
             width: 90%;
@@ -207,9 +255,9 @@
             padding: 25px;
             text-align: center;
             position: relative;
-            box-shadow: 0 10px 40px rgba(223, 177, 91, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             transform: scale(0.9);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s;
         }
 
         .modal-overlay.active .modal-card {
@@ -242,7 +290,7 @@
 
         .modal-price {
             color: var(--text-color);
-            background-color: #1f1f1f;
+            background-color: var(--price-bg);
             display: inline-block;
             padding: 8px 20px;
             border-radius: 12px;
@@ -258,7 +306,7 @@
 
         .close-btn {
             background-color: var(--accent-color);
-            color: #000;
+            color: #fff;
             border: none;
             width: 100%;
             padding: 12px;
@@ -266,14 +314,18 @@
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: opacity 0.2s;
+        }
+
+        [data-theme="light"] .close-btn {
+            color: #000;
         }
 
         .close-btn:hover {
             opacity: 0.9;
         }
 
-        /* نهاية الصفحة الفخمة */
+        /* نهاية الصفحة */
         footer {
             text-align: center;
             padding: 40px 0 30px 0;
@@ -287,8 +339,9 @@
 <body>
 
     <div class="container">
-        <!-- رأس الصفحة مع اللوكو -->
+        <!-- رأس الصفحة مع اللوكو وزر تبديل الثيم -->
         <header>
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="تبديل الوضع">🌙</button>
             <div class="logo-container">
                 <img src="logo.jpg" alt="KASHAN Logo" class="logo-img">
             </div>
@@ -384,6 +437,15 @@
         <!-- القسم الثالث: المشروبات الباردة -->
         <div id="cold-drinks" class="section-title">المشروبات الباردة</div>
 
+        <div class="menu-item" onclick="openModal('حليب روحاتي 🤍', 'حليب طازج وغني ومميز لتحلية جلستكم وإعطائكم طاقة وانتعاش.', '2,000 د.ع', 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300')">
+            <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=150" alt="حليب روحاتي">
+            <div class="item-details">
+                <h3>حليب روحاتي 🤍</h3>
+                <p>حليب طازج وغني ومميز</p>
+                <div class="price">2,000 د.ع</div>
+            </div>
+        </div>
+
         <div class="menu-item" onclick="openModal('ميلك شيك', 'مخفوق الحليب الغني والبارد مع نكهات الإضافات الفاخرة.', '3,000 د.ع', 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300')">
             <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=150" alt="ميلك شيك">
             <div class="item-details">
@@ -438,6 +500,7 @@
     </div>
 
     <script>
+        // دالة فتح النافذة المنبثقة
         function openModal(title, desc, price, img) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalDesc').innerText = desc;
@@ -455,6 +518,34 @@
                 document.getElementById('productModal').classList.remove('active');
             }
         }
+
+        // دالة تبديل الوضع (ليل/نهار)
+        function toggleTheme() {
+            const htmlTag = document.documentElement;
+            const btn = document.getElementById('themeToggleBtn');
+            
+            if (htmlTag.getAttribute('data-theme') === 'light') {
+                htmlTag.removeAttribute('data-theme');
+                btn.innerText = '🌙';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlTag.setAttribute('data-theme', 'light');
+                btn.innerText = '☀️';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // استرجاع تفضيل المستخدم السابق عند فتح الموقع
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const btn = document.getElementById('themeToggleBtn');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                btn.innerText = '☀️';
+            } else {
+                btn.innerText = '🌙';
+            }
+        });
     </script>
 
 </body>
