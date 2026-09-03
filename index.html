@@ -6,12 +6,13 @@
     <title>KASHAN COFFEE - Menu</title>
     <style>
         :root {
-            --bg-color: #0b0b0b;
-            --card-bg: #161616;
-            --text-color: #f3f3f3;
+            --bg-color: #070707;
+            --card-bg: #121212;
+            --text-color: #f8f9fa;
             --accent-color: #dfb15b;
-            --gray-text: #999999;
-            --border-color: #262626;
+            --accent-glow: rgba(223, 177, 91, 0.15);
+            --gray-text: #a0a0a0;
+            --border-color: #222222;
         }
 
         body {
@@ -21,69 +22,130 @@
             margin: 0;
             padding: 0;
             direction: rtl;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 550px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
         }
 
+        /* رأس الصفحة الفخم */
         header {
             text-align: center;
-            padding: 30px 0 20px 0;
+            padding: 35px 15px 25px 15px;
+            background: linear-gradient(to bottom, #141414, var(--bg-color));
             border-bottom: 1px solid var(--border-color);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            border-radius: 0 0 24px 24px;
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
         }
 
         .logo-img {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--accent-color);
-            box-shadow: 0 4px 15px rgba(223, 177, 91, 0.3);
-            margin-bottom: 12px;
+            box-shadow: 0 0 25px var(--accent-glow);
         }
 
         header h1 {
             color: var(--accent-color);
-            margin: 0 0 5px 0;
-            font-size: 26px;
-            letter-spacing: 1px;
-            font-weight: 700;
+            margin: 0 0 8px 0;
+            font-size: 28px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
         }
 
         header p {
             color: var(--gray-text);
             margin: 0;
             font-size: 13px;
+            letter-spacing: 0.5px;
         }
 
-        .category-title {
+        /* أزرار التنقل السريع بين الأقسام */
+        .category-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 5px 20px 5px;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-pill {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--gray-text);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-pill:hover, .nav-pill.active {
+            background-color: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* عنوان القسم */
+        .section-title {
             color: var(--accent-color);
             font-size: 18px;
-            margin: 35px 0 15px 0;
-            border-right: 3px solid var(--accent-color);
-            padding-right: 12px;
-            font-weight: bold;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
         }
 
+        .section-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to left, var(--border-color), transparent);
+        }
+
+        /* بطاقات القائمة الاحترافية */
         .menu-item {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
-            padding: 14px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            padding: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .menu-item:active {
+            transform: scale(0.98);
+            border-color: var(--accent-color);
         }
 
         .menu-item img {
-            width: 75px;
-            height: 75px;
-            border-radius: 10px;
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
             object-fit: cover;
             margin-left: 15px;
             border: 1px solid var(--border-color);
@@ -94,48 +156,157 @@
         }
 
         .item-details h3 {
-            margin: 0 0 6px 0;
-            font-size: 16px;
+            margin: 0 0 5px 0;
+            font-size: 15px;
             color: var(--text-color);
+            font-weight: 600;
         }
 
         .item-details p {
             margin: 0 0 8px 0;
             font-size: 12px;
             color: var(--gray-text);
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .price {
             color: var(--accent-color);
-            font-weight: bold;
+            font-weight: 700;
             font-size: 14px;
         }
 
+        /* نافذة التفاصيل المنبثقة (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background-color: #161616;
+            border: 1px solid var(--accent-color);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 400px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(223, 177, 91, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .modal-title {
+            color: var(--accent-color);
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .modal-desc {
+            color: var(--gray-text);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+        }
+
+        .modal-price {
+            color: var(--text-color);
+            background-color: #1f1f1f;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-price span {
+            color: var(--accent-color);
+        }
+
+        .close-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .close-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* نهاية الصفحة الفخمة */
         footer {
             text-align: center;
-            padding: 35px 0;
+            padding: 40px 0 30px 0;
             color: var(--gray-text);
             font-size: 12px;
             border-top: 1px solid var(--border-color);
-            margin-top: 40px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- رأس الصفحة مع اللوكو بصيغة jpg -->
+        <!-- رأس الصفحة مع اللوكو -->
         <header>
-            <img src="logo.jpg" alt="KASHAN Logo" class="logo-img">
+            <div class="logo-container">
+                <img src="logo.jpg" alt="KASHAN Logo" class="logo-img">
+            </div>
             <h1>KASHAN COFFEE</h1>
-            <p>أهلاً بك، استمتع بأوقاتك وأجمل الجلسات معنا ☕</p>
+            <p>أهلاً بك، استمتع بأجمل الأوقات معنا ☕</p>
         </header>
 
-        <!-- الخانة الأولى: الأرجيلة -->
-        <div class="category-title">الأرجيلة (الشيشة)</div>
+        <!-- أزرار التنقل السريع بين الأقسام -->
+        <div class="category-nav">
+            <a href="#shisha" class="nav-pill active">الأرجيلة</a>
+            <a href="#coffee" class="nav-pill">القهوة</a>
+            <a href="#cold-drinks" class="nav-pill">المشروبات الباردة</a>
+        </div>
 
-        <div class="menu-item">
+        <!-- القسم الأول: الأرجيلة -->
+        <div id="shisha" class="section-title">الأرجيلة (الشيشة)</div>
+
+        <div class="menu-item" onclick="openModal('علج نعناع', 'نكهة منعشة ومميزة تجمع بين انتعاش النعناع وحلاوة العلج الفاخرة لتعديل المزاج.', '3,000 د.ع', 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300')">
             <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=150" alt="علج نعناع">
             <div class="item-details">
                 <h3>علج نعناع</h3>
@@ -144,7 +315,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('نعناع', 'نعناع أصلي وطبيعي لجلسة هادئة ومريحة.', '3,000 د.ع', 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300')">
             <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=150" alt="نعناع">
             <div class="item-details">
                 <h3>نعناع</h3>
@@ -153,7 +324,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('ليمون نعناع', 'المزيج الكلاسيكي المنعش من الليمون الحامض والنعناع الطبيعي.', '3,000 د.ع', 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300')">
             <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=150" alt="ليمون نعناع">
             <div class="item-details">
                 <h3>ليمون نعناع</h3>
@@ -162,7 +333,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('عنب', 'نكهة العنب الفاخرة والغنية بدخان كثيف ورائحة مميزة.', '3,000 د.ع', 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300')">
             <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=150" alt="عنب">
             <div class="item-details">
                 <h3>عنب</h3>
@@ -171,7 +342,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('انكليزي', 'خلطة الأرجيلة الخاصة والمميزة لعشاق النكهات القوية.', '3,000 د.ع', 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300')">
             <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=150" alt="انكليزي">
             <div class="item-details">
                 <h3>انكليزي</h3>
@@ -180,10 +351,10 @@
             </div>
         </div>
 
-        <!-- الخانة الثانية: القهوة -->
-        <div class="category-title">القهوة</div>
+        <!-- القسم الثاني: القهوة -->
+        <div id="coffee" class="section-title">القهوة</div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('اسبريسو', 'محضرة بإتقان من أجود حبوب البن لتعديل المزاج.', '4,000 د.ع', 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300')">
             <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150" alt="اسبريسو">
             <div class="item-details">
                 <h3>اسبريسو</h3>
@@ -192,7 +363,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('قهوة سادة', 'قهوة عربية أو تركية أصلية محضرة بالطريقة التقليدية.', '2,000 د.ع', 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300')">
             <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150" alt="قهوة سادة">
             <div class="item-details">
                 <h3>قهوة سادة</h3>
@@ -201,7 +372,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('قهوة جكليتيه', 'قهوة مميزة بنكهة الجكليت الفريدة التي تمنحك طعماً لا يُنسى.', '2,000 د.ع', 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300')">
             <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150" alt="قهوة جكليتيه">
             <div class="item-details">
                 <h3>قهوة جكليتيه</h3>
@@ -210,10 +381,10 @@
             </div>
         </div>
 
-        <!-- الخانة الثالثة: المشروبات الباردة -->
-        <div class="category-title">المشروبات الباردة</div>
+        <!-- القسم الثالث: المشروبات الباردة -->
+        <div id="cold-drinks" class="section-title">المشروبات الباردة</div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('ميلك شيك', 'مخفوق الحليب الغني والبارد مع نكهات الإضافات الفاخرة.', '3,000 د.ع', 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300')">
             <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=150" alt="ميلك شيك">
             <div class="item-details">
                 <h3>ميلك شيك</h3>
@@ -222,7 +393,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('عصير رمان', 'عصير رمان طبيعي 100% منعش ومثلج.', '500 د.ع', 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=300')">
             <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=150" alt="عصير رمان">
             <div class="item-details">
                 <h3>عصير رمان</h3>
@@ -231,7 +402,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('بيبسي', 'مشروب غازي بارد ومنعش.', '500 د.ع', 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300')">
             <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=150" alt="بيبسي">
             <div class="item-details">
                 <h3>بيبسي</h3>
@@ -240,7 +411,7 @@
             </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="openModal('ماونتن ديو', 'مشروب طاقة غازي منعش يروي العطش.', '500 د.ع', 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=300')">
             <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=150" alt="ديو">
             <div class="item-details">
                 <h3>ماونتن ديو</h3>
@@ -254,6 +425,37 @@
             <p>KASHAN COFFEE • نتمنى لك جلسة طيبة 🤍</p>
         </footer>
     </div>
+
+    <!-- النافذة المنبثقة للتفاصيل -->
+    <div id="productModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-card">
+            <img id="modalImg" src="" alt="" class="modal-img">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <p id="modalDesc" class="modal-desc"></p>
+            <div class="modal-price">السعر: <span id="modalPrice"></span></div>
+            <button class="close-btn" onclick="closeModalDirect()">إغلاق</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(title, desc, price, img) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalImg').src = img;
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeModalDirect() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        function closeModal(event) {
+            if (event.target.id === 'productModal') {
+                document.getElementById('productModal').classList.remove('active');
+            }
+        }
+    </script>
 
 </body>
 </html>
