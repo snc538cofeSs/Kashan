@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kashan Cafe - القائمة الرقمية</title>
+    <title>KASHAN COFFEE - القائمة الرقمية</title>
     <style>
         :root {
             --bg-color: #121212;
@@ -12,7 +12,6 @@
             --text-muted: #aaaaaa;
             --accent-color: #d4af37;
             --border-color: #333333;
-            --modal-bg: #252525;
         }
 
         [data-theme="light"] {
@@ -22,7 +21,6 @@
             --text-muted: #6c757d;
             --accent-color: #b8860b;
             --border-color: #dee2e6;
-            --modal-bg: #ffffff;
         }
 
         * {
@@ -37,46 +35,17 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding-bottom: 40px;
+            padding-bottom: 50px;
         }
 
-        header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .header-content {
-            max-width: 800px;
+        /* شريط علوي صغير لأزرار التحكم */
+        .top-bar {
+            max-width: 700px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .logo-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .cafe-logo {
-            width: 50px;
-            height: 50px;
-            object-fit: contain; /* لتجنب قص شعار PNG */
-            border-radius: 50%;
-            border: 2px solid var(--accent-color);
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        h1 {
-            color: var(--accent-color);
-            font-size: 1.6rem;
+            padding: 15px 20px;
         }
 
         .controls {
@@ -88,10 +57,11 @@
             background: none;
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 8px 12px;
+            padding: 6px 12px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
         button:hover {
@@ -99,61 +69,106 @@
             color: var(--accent-color);
         }
 
+        /* واجهة الهيدر الكبيرة مع اللوجو */
+        .hero-header {
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero-logo {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.03);
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
         .container {
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 700px;
+            margin: 0 auto;
             padding: 0 15px;
         }
 
         .menu-category {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 35px;
         }
 
         .menu-category h2 {
-            color: var(--accent-color);
+            color: var(--text-color);
             font-size: 1.3rem;
             margin-bottom: 15px;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 6px;
-            display: inline-block;
+            text-align: right;
+            border-right: 3px solid var(--accent-color);
+            padding-right: 10px;
         }
 
         .menu-items {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
+        /* تصميم البطاقات الواسعة المشابهة للصورة */
         .menu-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px dashed var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .menu-item:hover {
-            background-color: rgba(212, 175, 55, 0.05);
-            transform: scale(1.01);
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .menu-item:last-child {
-            border-bottom: none;
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-color);
         }
 
-        .item-info {
+        .item-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .item-price-img {
             display: flex;
             align-items: center;
-            gap: 12px;
-            flex: 1;
+            gap: 15px;
+        }
+
+        .item-price {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            white-space: nowrap;
         }
 
         .item-img {
@@ -164,90 +179,9 @@
             border: 1px solid var(--border-color);
         }
 
-        .item-name {
-            font-size: 1.05rem;
-            font-weight: 500;
-        }
-
-        .item-price {
-            font-size: 1.05rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            white-space: nowrap;
-        }
-
-        /* تصميم النافذة المنبثقة (Popup) عند الضغط على المنتج */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background-color: var(--modal-bg);
-            border: 1px solid var(--accent-color);
-            border-radius: 16px;
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-
-        .modal-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color);
-        }
-
-        .modal-title {
-            font-size: 1.4rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .modal-price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .close-btn {
-            background-color: var(--accent-color);
-            color: #121212;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .close-btn:hover {
-            opacity: 0.9;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
             color: var(--text-muted);
             font-size: 0.9rem;
         }
@@ -255,19 +189,19 @@
 </head>
 <body data-theme="dark">
 
-    <header>
-        <div class="header-content">
-            <div class="logo-title">
-                <!-- تم ضبط اللوجو ليكون بصيغة PNG شفافة -->
-                <img src="images/logo.png" alt="Kashan Cafe Logo" class="cafe-logo">
-                <h1>Kashan Cafe</h1>
-            </div>
-            <div class="controls">
-                <button id="lang-toggle" onclick="toggleLanguage()">EN</button>
-                <button id="theme-toggle" onclick="toggleTheme()">☀️</button>
-            </div>
+    <div class="top-bar">
+        <div class="controls">
+            <button id="lang-toggle" onclick="toggleLanguage()">EN</button>
+            <button id="theme-toggle" onclick="toggleTheme()">☀️</button>
         </div>
-    </header>
+    </div>
+
+    <!-- الهيدر الكبير مع اللوجو الـ PNG -->
+    <div class="hero-header">
+        <img src="images/logo.png" alt="Kashan Coffee Logo" class="hero-logo">
+        <h1>KASHAN COFFEE</h1>
+        <p class="hero-subtitle">أهلاً بك، استمتع بأجمل الأوقات معنا ☕</p>
+    </div>
 
     <div class="container">
         
@@ -275,191 +209,237 @@
         <div class="menu-category" id="hot-drinks">
             <h2 data-ar="المشروبات الساخنة" data-en="Hot Drinks">المشروبات الساخنة</h2>
             <div class="menu-items">
-                <div class="menu-item" onclick="openModal('images/tea.jpg', 'شاي', 'Tea', '500 د.ع')">
-                    <div class="item-info">
-                        <img src="images/tea.jpg" alt="شاي" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="شاي" data-en="Tea">شاي</span>
+                        <span class="item-desc" data-ar="شاي ساخن ولذيذ" data-en="Hot delicious tea">شاي ساخن ولذيذ</span>
                     </div>
-                    <span class="item-price">500 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">500 د.ع</span>
+                        <img src="images/tea.jpg" alt="شاي" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/lemon-tea.jpg', 'شاي ليمون', 'Lemon Tea', '1,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/lemon-tea.jpg" alt="شاي ليمون" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="شاي ليمون" data-en="Lemon Tea">شاي ليمون</span>
+                        <span class="item-desc" data-ar="شاي بنكهة الليمون المنعشة" data-en="Tea with fresh lemon">شاي بنكهة الليمون المنعشة</span>
                     </div>
-                    <span class="item-price">1,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">1,000 د.ع</span>
+                        <img src="images/lemon-tea.jpg" alt="شاي ليمون" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/karak.jpg', 'شاي كرك', 'Karak Tea', '1,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/karak.jpg" alt="شاي كرك" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="شاي كرك" data-en="Karak Tea">شاي كرك</span>
+                        <span class="item-desc" data-ar="كرك على اصوله" data-en="Traditional Karak tea">كرك على اصوله</span>
                     </div>
-                    <span class="item-price">1,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">1,000 د.ع</span>
+                        <img src="images/karak.jpg" alt="شاي كرك" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/turkish-coffee.jpg', 'قهوة تركية', 'Turkish Coffee', '2,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/turkish-coffee.jpg" alt="قهوة تركية" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="قهوة تركية" data-en="Turkish Coffee">قهوة تركية</span>
+                        <span class="item-desc" data-ar="قهوة تركية مظبوطة" data-en="Classic Turkish coffee">قهوة تركية مظبوطة</span>
                     </div>
-                    <span class="item-price">2,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">2,000 د.ع</span>
+                        <img src="images/turkish-coffee.jpg" alt="قهوة تركية" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/ottoman-coffee.jpg', 'قهوة عثمانية', 'Ottoman Coffee', '2,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/ottoman-coffee.jpg" alt="قهوة عثمانية" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="قهوة عثمانية" data-en="Ottoman Coffee">قهوة عثمانية</span>
+                        <span class="item-desc" data-ar="خلطة عثمانية مميزة" data-en="Special Ottoman blend">خلطة عثمانية مميزة</span>
                     </div>
-                    <span class="item-price">2,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">2,000 د.ع</span>
+                        <img src="images/ottoman-coffee.jpg" alt="قهوة عثمانية" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/cappuccino.jpg', 'كابشينو', 'Cappuccino', '1,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/cappuccino.jpg" alt="كابشينو" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="كابشينو" data-en="Cappuccino">كابشينو</span>
+                        <span class="item-desc" data-ar="برغوة غنية ولذيذة" data-en="Rich creamy cappuccino">برغوة غنية ولذيذة</span>
                     </div>
-                    <span class="item-price">1,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">1,000 د.ع</span>
+                        <img src="images/cappuccino.jpg" alt="كابشينو" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/nescafe.jpg', 'نسكافيه', 'Nescafe', '1,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/nescafe.jpg" alt="نسكافيه" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="نسكافيه" data-en="Nescafe">نسكافيه</span>
+                        <span class="item-desc" data-ar="نسكافيه بالحليب الساخن" data-en="Hot Nescafe with milk">نسكافيه بالحليب الساخن</span>
                     </div>
-                    <span class="item-price">1,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">1,000 د.ع</span>
+                        <img src="images/nescafe.jpg" alt="نسكافيه" class="item-img">
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- قسم المشروبات الباردة -->
+        <!-- قسم المشروبات الباردة (كاملة بدون نقص) -->
         <div class="menu-category" id="cold-drinks">
             <h2 data-ar="المشروبات الباردة" data-en="Cold Drinks">المشروبات الباردة</h2>
             <div class="menu-items">
-                <div class="menu-item" onclick="openModal('images/banana-milk.jpg', 'عصير موز بالحليب', 'Banana Milk Juice', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/banana-milk.jpg" alt="عصير موز بالحليب" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير موز بالحليب" data-en="Banana Milk Juice">عصير موز بالحليب</span>
+                        <span class="item-desc" data-ar="طازج ومنعش" data-en="Fresh and refreshing">طازج ومنعش</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/banana-milk.jpg" alt="عصير موز بالحليب" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/banana.jpg', 'عصير موز', 'Banana Juice', '2,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/banana.jpg" alt="عصير موز" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير موز" data-en="Banana Juice">عصير موز</span>
+                        <span class="item-desc" data-ar="موز طبيعي طازج" data-en="Fresh natural banana">موز طبيعي طازج</span>
                     </div>
-                    <span class="item-price">2,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">2,000 د.ع</span>
+                        <img src="images/banana.jpg" alt="عصير موز" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/strawberry.jpg', 'عصير فراوله', 'Strawberry Juice', '2,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/strawberry.jpg" alt="عصير فراوله" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير فراوله" data-en="Strawberry Juice">عصير فراوله</span>
+                        <span class="item-desc" data-ar="فراولة طازجة ولذيذة" data-en="Fresh strawberry juice">فراولة طازجة ولذيذة</span>
                     </div>
-                    <span class="item-price">2,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">2,000 د.ع</span>
+                        <img src="images/strawberry.jpg" alt="عصير فراوله" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/watermelon.jpg', 'عصير بطيخ', 'Watermelon Juice', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/watermelon.jpg" alt="عصير بطيخ" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير بطيخ" data-en="Watermelon Juice">عصير بطيخ</span>
+                        <span class="item-desc" data-ar="مبرد ومنعش للصيف" data-en="Chilled summer cooler">مبرد ومنعش للصيف</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/watermelon.jpg" alt="عصير بطيخ" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/strawberry-milk.jpg', 'عصير فراوله بالحليب', 'Strawberry Milk Juice', '2,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/strawberry-milk.jpg" alt="عصير فراوله بالحليب" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير فراوله بالحليب" data-en="Strawberry Milk Juice">عصير فراوله بالحليب</span>
+                        <span class="item-desc" data-ar="مزيج غني ومرطب" data-en="Rich and creamy blend">مزيج غني ومرطب</span>
                     </div>
-                    <span class="item-price">2,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">2,000 د.ع</span>
+                        <img src="images/strawberry-milk.jpg" alt="عصير فراوله بالحليب" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/orange.jpg', 'عصير برتقال', 'Orange Juice', '2,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/orange.jpg" alt="عصير برتقال" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير برتقال" data-en="Orange Juice">عصير برتقال</span>
+                        <span class="item-desc" data-ar="برتقال طبيعي معصور" data-en="Fresh squeezed orange">برتقال طبيعي معصور</span>
                     </div>
-                    <span class="item-price">2,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">2,000 د.ع</span>
+                        <img src="images/orange.jpg" alt="عصير برتقال" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/lemon.jpg', 'عصير ليمون', 'Lemon Juice', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/lemon.jpg" alt="عصير ليمون" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير ليمون" data-en="Lemon Juice">عصير ليمون</span>
+                        <span class="item-desc" data-ar="ليمون مثلج بالنعناع" data-en="Iced lemon with mint">ليمون مثلج بالنعناع</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/lemon.jpg" alt="عصير ليمون" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/lemon-orange.jpg', 'عصير ليمون برتقال', 'Lemon Orange Juice', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/lemon-orange.jpg" alt="عصير ليمون برتقال" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير ليمون برتقال" data-en="Lemon Orange Juice">عصير ليمون برتقال</span>
+                        <span class="item-desc" data-ar="مزيج حمضيات منعش" data-en="Refreshing citrus blend">مزيج حمضيات منعش</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/lemon-orange.jpg" alt="عصير ليمون برتقال" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/cocktail.jpg', 'عصير كوكتيل', 'Cocktail Juice', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/cocktail.jpg" alt="عصير كوكتيل" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="عصير كوكتيل" data-en="Cocktail Juice">عصير كوكتيل</span>
+                        <span class="item-desc" data-ar="تشكيلة فواكه مميزة" data-en="Special fruit mix">تشكيلة فواكه مميزة</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/cocktail.jpg" alt="عصير كوكتيل" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/mojito-blueberry.jpg', 'موهيتو توت ازرق', 'Blueberry Mojito', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/mojito-blueberry.jpg" alt="موهيتو توت ازرق" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="موهيتو توت ازرق" data-en="Blueberry Mojito">موهيتو توت ازرق</span>
+                        <span class="item-desc" data-ar="نكهة التوت الأزرق المنعشة" data-en="Refreshing blueberry flavor">نكهة التوت الأزرق المنعشة</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/mojito-blueberry.jpg" alt="موهيتو توت ازرق" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/mojito-rose.jpg', 'موهيتو ماء الورد', 'Rose Water Mojito', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/mojito-rose.jpg" alt="موهيتو ماء الورد" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="موهيتو ماء الورد" data-en="Rose Water Mojito">موهيتو ماء الورد</span>
+                        <span class="item-desc" data-ar="نكهة شرقية منعشة" data-en="Refreshing oriental flavor">نكهة شرقية منعشة</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/mojito-rose.jpg" alt="موهيتو ماء الورد" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/mojito-blue.jpg', 'موهيتو بلو كرساو', 'Blue Curaçao Mojito', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/mojito-blue.jpg" alt="موهيتو بلو كرساو" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="موهيتو بلو كرساو" data-en="Blue Curaçao Mojito">موهيتو بلو كرساو</span>
+                        <span class="item-desc" data-ar="موهيتو أزرق فخم" data-en="Luxury blue mojito">موهيتو أزرق فخم</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/mojito-blue.jpg" alt="موهيتو بلو كرساو" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/mojito-strawberry.jpg', 'موهيتو فرولة', 'Strawberry Mojito', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/mojito-strawberry.jpg" alt="موهيتو فرولة" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="موهيتو فرولة" data-en="Strawberry Mojito">موهيتو فرولة</span>
+                        <span class="item-desc" data-ar="موهيتو بنكهة الفراولة" data-en="Strawberry flavored mojito">موهيتو بنكهة الفراولة</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/mojito-strawberry.jpg" alt="موهيتو فرولة" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/mojito-mango.jpg', 'موهيتو مانجا', 'Mango Mojito', '3,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/mojito-mango.jpg" alt="موهيتو مانجا" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="موهيتو مانجا" data-en="Mango Mojito">موهيتو مانجا</span>
+                        <span class="item-desc" data-ar="موهيتو مانجا استوائي" data-en="Tropical mango mojito">موهيتو مانجا استوائي</span>
                     </div>
-                    <span class="item-price">3,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">3,000 د.ع</span>
+                        <img src="images/mojito-mango.jpg" alt="موهيتو مانجا" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/pepsi-ice.jpg', 'ببسي مثلج', 'Iced Pepsi', '1,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/pepsi-ice.jpg" alt="ببسي مثلج" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="ببسي مثلج" data-en="Iced Pepsi">ببسي مثلج</span>
+                        <span class="item-desc" data-ar="مع الثلج المنعش" data-en="Served with ice">مع الثلج المنعش</span>
                     </div>
-                    <span class="item-price">1,000 د.ع</span>
+                    <div class="item-price-img">
+                        <span class="item-price">1,000 د.ع</span>
+                        <img src="images/pepsi-ice.jpg" alt="ببسي مثلج" class="item-img">
+                    </div>
                 </div>
-                <div class="menu-item" onclick="openModal('images/pepsi.jpg', 'ببسي', 'Pepsi', '500 د.ع')">
-                    <div class="item-info">
-                        <img src="images/pepsi.jpg" alt="ببسي" class="item-img">
+                <div class="menu-item">
+                    <div class="item-details">
                         <span class="item-name" data-ar="ببسي" data-en="Pepsi">ببسي</span>
+                        <span class="item-desc" data-ar="مشروب غازي بارد" data-en="Cold carbonated drink">مشروب غازي بارد</span>
                     </div>
-                    <span class="item-price">500 د.ع</span>
-                </div>
-                <div class="menu-item" onclick="openModal('images/energy-ice.jpg', 'طاقه مثلج', 'Iced Energy Drink', '1,500 د.ع')">
-                    <div class="item-info">
-                        <img src="images/energy-ice.jpg" alt="طاقه مثلج" class="item-img">
-                        <span class="item-name" data-ar="طاقه مثلج" data-en="Iced Energy Drink">طاقه مثلج</span>
-                    </div>
-                    <span class="item-price">1,500 د.ع</span>
-                </div>
-                <div class="menu-item" onclick="openModal('images/energy.jpg', 'مشروب طاقة', 'Energy Drink', '1,000 د.ع')">
-                    <div class="item-info">
-                        <img src="images/energy.jpg" alt="مشروب طاقة" class="item-img">
-                        <span class="item-name" data-ar="مشروب طاقة" data-en="Energy Drink">مشروب طاقة</span>
-                    </div>
-                    <span class="item-price">1,000 د.ع</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- قسم وجبات الطعام -->
-        <div class="menu-category" id="meals">
-            
+                    <div class="item-price-img">
+                        <span class="item-price">
