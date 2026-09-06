@@ -38,7 +38,6 @@
             padding-bottom: 50px;
         }
 
-        /* شريط علوي صغير لأزرار التحكم */
         .top-bar {
             max-width: 700px;
             margin: 0 auto;
@@ -69,32 +68,32 @@
             color: var(--accent-color);
         }
 
-        /* واجهة الهيدر الكبيرة مع اللوجو */
+        /* الهيدر مع اللوجو الكبير بصيغة PNG */
         .hero-header {
             max-width: 700px;
             margin: 0 auto 30px auto;
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 30px 20px;
+            padding: 35px 20px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .hero-logo {
-            width: 110px;
-            height: 110px;
+            width: 140px;
+            height: 140px;
             object-fit: contain;
             border-radius: 50%;
             border: 2px solid var(--accent-color);
             background-color: rgba(255, 255, 255, 0.03);
             margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
         }
 
         h1 {
             color: var(--accent-color);
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             letter-spacing: 1px;
             margin-bottom: 5px;
         }
@@ -129,7 +128,6 @@
             gap: 12px;
         }
 
-        /* تصميم البطاقات الواسعة المشابهة للصورة */
         .menu-item {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -196,9 +194,9 @@
         </div>
     </div>
 
-    <!-- الهيدر الكبير مع اللوجو الـ PNG -->
+    <!-- اللوجو الكبير بصيغة PNG -->
     <div class="hero-header">
-        <img src="images/logo.png" alt="Kashan Coffee Logo" class="hero-logo">
+        <img src="logo.png" alt="Kashan Coffee Logo" class="hero-logo">
         <h1>KASHAN COFFEE</h1>
         <p class="hero-subtitle">أهلاً بك، استمتع بأجمل الأوقات معنا ☕</p>
     </div>
@@ -282,7 +280,7 @@
             </div>
         </div>
 
-        <!-- قسم المشروبات الباردة (كاملة بدون نقص) -->
+        <!-- قسم المشروبات الباردة -->
         <div class="menu-category" id="cold-drinks">
             <h2 data-ar="المشروبات الباردة" data-en="Cold Drinks">المشروبات الباردة</h2>
             <div class="menu-items">
@@ -442,4 +440,244 @@
                         <span class="item-desc" data-ar="مشروب غازي بارد" data-en="Cold carbonated drink">مشروب غازي بارد</span>
                     </div>
                     <div class="item-price-img">
-                        <span class="item-price">
+                        <span class="item-price">500 د.ع</span>
+                        <img src="images/pepsi.jpg" alt="ببسي" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="طاقه مثلج" data-en="Iced Energy Drink">طاقه مثلج</span>
+                        <span class="item-desc" data-ar="مشروب طاقة بارد مع الثلج" data-en="Iced energy drink">مشروب طاقة بارد مع الثلج</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">1,500 د.ع</span>
+                        <img src="images/energy-ice.jpg" alt="طاقه مثلج" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="مشروب طاقة" data-en="Energy Drink">مشروب طاقة</span>
+                        <span class="item-desc" data-ar="لانتعاش طوال اليوم" data-en="For all-day energy">لانتعاش طوال اليوم</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">1,000 د.ع</span>
+                        <img src="images/energy.jpg" alt="مشروب طاقة" class="item-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم وجبات الطعام -->
+        <div class="menu-category" id="meals">
+            <h2 data-ar="وجبات طعام" data-en="Meals">وجبات طعام</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="فنگر كبير" data-en="Large Finger">فنگر كبير</span>
+                        <span class="item-desc" data-ar="وجبة بطاطا مقلية كبيرة مقرمشة" data-en="Large crispy french fries">وجبة بطاطا مقلية كبيرة مقرمشة</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">2,000 د.ع</span>
+                        <img src="images/finger-large.jpg" alt="فنگر كبير" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="فنكر صغير" data-en="Small Finger">فنكر صغير</span>
+                        <span class="item-desc" data-ar="وجبة بطاطا مقلية مقرمشة" data-en="Crispy french fries">وجبة بطاطا مقلية مقرمشة</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">1,000 د.ع</span>
+                        <img src="images/finger-small.jpg" alt="فنكر صغير" class="item-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الحلويات -->
+        <div class="menu-category" id="desserts">
+            <h2 data-ar="الحلويات" data-en="Desserts">الحلويات</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="كريب لوتس" data-en="Lotus Crepe">كريب لوتس</span>
+                        <span class="item-desc" data-ar="كريب غني بصوص اللوتس المقرمش" data-en="Crepe with lotus sauce">كريب غني بصوص اللوتس المقرمش</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/crepe-lotus.jpg" alt="كريب لوتس" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="كريب نوتيلا" data-en="Nutella Crepe">كريب نوتيلا</span>
+                        <span class="item-desc" data-ar="كريب شوكولاتة نوتيلا فاخرة" data-en="Delicious Nutella crepe">كريب شوكولاتة نوتيلا فاخرة</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/crepe-nutella.jpg" alt="كريب نوتيلا" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="كريب بستاشيو" data-en="Pistachio Crepe">كريب بستاشيو</span>
+                        <span class="item-desc" data-ar="كريب بصوص الفستق الحلبي" data-en="Crepe with pistachio sauce">كريب بصوص الفستق الحلبي</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/crepe-pistachio.jpg" alt="كريب بستاشيو" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="بان كيك لوتس" data-en="Lotus Pancake">بان كيك لوتس</span>
+                        <span class="item-desc" data-ar="بان كيك طري بصوص اللوتس" data-en="Soft pancake with lotus">بان كيك طري بصوص اللوتس</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/pancake-lotus.jpg" alt="بان كيك لوتس" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="بان كيك نوتيلا" data-en="Nutella Pancake">بان كيك نوتيلا</span>
+                        <span class="item-desc" data-ar="بان كيك بنوتيلا شوكليت" data-en="Pancake with Nutella">بان كيك بنوتيلا شوكليت</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/pancake-nutella.jpg" alt="بان كيك نوتيلا" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="بان كيك بستاشيو" data-en="Pistachio Pancake">بان كيك بستاشيو</span>
+                        <span class="item-desc" data-ar="بان كيك طري بصوص البستاشيو" data-en="Pistachio pancake">بان كيك طري بصوص البستاشيو</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">2,000 د.ع</span>
+                        <img src="images/pancake-pistachio.jpg" alt="بان كيك بستاشيو" class="item-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الأراكيل -->
+        <div class="menu-category" id="shisha">
+            <h2 data-ar="الأراكيل" data-en="Shisha">الأراكيل</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="اركيلة نعناع" data-en="Mint Shisha">اركيلة نعناع</span>
+                        <span class="item-desc" data-ar="نعناع اصلي لجلسة هادئة" data-en="Original mint for relaxation">نعناع اصلي لجلسة هادئة</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/shisha-mint.jpg" alt="اركيلة نعناع" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="اركيلة علك نعناع" data-en="Gum Mint Shisha">اركيلة علك نعناع</span>
+                        <span class="item-desc" data-ar="نكهة منعشة ومميزة" data-en="Refreshing and unique flavor">نكهة منعشة ومميزة</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/shisha-gum.jpg" alt="اركيلة علك نعناع" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="اركيلة انكليزي" data-en="English Shisha">اركيلة انكليزي</span>
+                        <span class="item-desc" data-ar="خلطة إنجليزية خاصة" data-en="Special English blend">خلطة إنجليزية خاصة</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/shisha-english.jpg" alt="اركيلة انكليزي" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="اركيلة تفاحتين فاخر" data-en="Fakher Double Apple Shisha">اركيلة تفاحتين فاخر</span>
+                        <span class="item-desc" data-ar="المعسل الفاخر المعروف" data-en="Luxury double apple">المعسل الفاخر المعروف</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/shisha-fakher.jpg" alt="اركيلة تفاحتين فاخر" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="اركيلة تفاحتين مصري" data-en="Egyptian Double Apple Shisha">اركيلة تفاحتين مصري</span>
+                        <span class="item-desc" data-ar="تفاحتين مصري أصلي" data-en="Original Egyptian double apple">تفاحتين مصري أصلي</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/shisha-egyptian.jpg" alt="اركيلة تفاحتين مصري" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="اركيلة ليمون نعناع" data-en="Lemon Mint Shisha">اركيلة ليمون نعناع</span>
+                        <span class="item-desc" data-ar="انتعاش الليمون مع النعناع" data-en="Lemon with mint flavor">انتعاش الليمون مع النعناع</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/shisha-lemon.jpg" alt="اركيلة ليمون نعناع" class="item-img">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name" data-ar="اركيلة عنب نعناع" data-en="Grape Mint Shisha">اركيلة عنب نعناع</span>
+                        <span class="item-desc" data-ar="عنب ونعناع لجلسة رائعة" data-en="Grape and mint blend">عنب ونعناع لجلسة رائعة</span>
+                    </div>
+                    <div class="item-price-img">
+                        <span class="item-price">4,000 د.ع</span>
+                        <img src="images/shisha-grape.jpg" alt="اركيلة عنب نعناع" class="item-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 KASHAN COFFEE. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-toggle');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeBtn.textContent = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.textContent = '☀️';
+            }
+        }
+
+        let currentLang = 'ar';
+        function toggleLanguage() {
+            const langBtn = document.getElementById('lang-toggle');
+            const html = document.documentElement;
+            
+            if (currentLang === 'ar') {
+                currentLang = 'en';
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langBtn.textContent = 'AR';
+            } else {
+                currentLang = 'ar';
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langBtn.textContent = 'EN';
+            }
+
+            document.querySelectorAll('[data-ar]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+    </script>
+</body>
+</html>
